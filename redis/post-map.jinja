@@ -1,0 +1,7 @@
+{%- if mapdata.socket -%}
+  {%- do mapdata.config.update({
+        "unixsocket": mapdata.lookup.socket.path,
+        "unixsocketperm": mapdata.lookup.socket.perms
+    })
+  -%}
+{%- endif -%}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Disable Transparent Huge Pages (THP)
+DefaultDependencies=no
+After=sysinit.target local-fs.target
+Before={{ redis.lookup.service.name }}.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo never | tee {{ redis.lookup.transparent_hugepage | path_join("enabled") }} > /dev/null'
+ExecStart=/bin/sh -c 'echo never | tee {{ redis.lookup.transparent_hugepage | path_join("defrag") }} > /dev/null'
+
+[Install]
+WantedBy=basic.target

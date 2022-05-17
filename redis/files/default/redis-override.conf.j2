@@ -1,0 +1,4 @@
+[Service]
+{%- if redis.service.protect_system_full %}
+ProtectSystem=full
+{%- endif %}

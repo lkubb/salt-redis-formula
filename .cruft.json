@@ -1,0 +1,51 @@
+{
+  "template": "https://github.com/lkubb/salt-template-formula",
+  "commit": "50a694adefdf54f1ca465db433c033ca764942bc",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "_extensions": [
+        "local_extensions.YAMLDumper"
+      ],
+      "_jinja2_env_vars": {
+        "block_start_string": "{!",
+        "block_end_string": "!}",
+        "variable_start_string": "{=",
+        "variable_end_string": "=}",
+        "comment_start_string": "{@",
+        "comment_end_string": "@}"
+      },
+      "name": "Redis",
+      "abbr": "redis",
+      "abbr_pysafe": "redis",
+      "pkg": "redis-server",
+      "needs_repo": "",
+      "config": "/etc/redis/redis.conf",
+      "service": "redis-server",
+      "subcomponent": "",
+      "subcomponent_config": "",
+      "git_username": "lkubb",
+      "_lookup": {
+        "socket": {
+          "path": "/var/run/redis/redis.sock",
+          "perms": "770"
+        },
+        "transparent_hugepage": "/sys/kernel/mm/transparent_hugepage"
+      },
+      "_settings": {
+        "config": {},
+        "port": 6379,
+        "socket": false,
+        "system": {
+          "overcommit_memory": true,
+          "transparent_huge_pages": false
+        },
+        "service": {
+          "protect_system_full": true
+        }
+      },
+      "_template": "https://github.com/lkubb/salt-template-formula"
+    }
+  },
+  "directory": null
+}

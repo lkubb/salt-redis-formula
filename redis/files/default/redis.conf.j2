@@ -1,0 +1,14 @@
+{%- macro render_opt(name, val) %}
+{%-   if val is string and " " in val %}
+{{ name }} "{{ val }}"
+{%-   else %}
+{{ name }} {{ val }}
+{%-   endif %}
+{%- endmacro -%}
+
+# This file is managed by Salt.
+# Manual changes might be overwritten.
+
+{% for opt, val in redis.config.items() %}
+{{ render_opt(opt, val) }}
+{%- endfor %}

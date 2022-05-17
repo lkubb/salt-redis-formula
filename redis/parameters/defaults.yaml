@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Set default values.
+---
+values:
+  lookup:
+    rootgroup: root
+    pkg:
+      name: redis-server
+    config: '/etc/redis/redis.conf'
+    service:
+      name: redis-server
+    socket:
+      path: /var/run/redis/redis.sock
+      perms: '770'
+    transparent_hugepage: /sys/kernel/mm/transparent_hugepage
+  config: {}
+  port: 6379
+  service:
+    protect_system_full: true
+  socket: false
+  system:
+    overcommit_memory: true
+    transparent_huge_pages: false
+  # Just here for testing
+  added_in_defaults: defaults_value
+  winner: defaults
+...
