@@ -7,6 +7,8 @@ redis:
     # Just for testing purposes
     winner: lookup
     added_in_lookup: lookup_value
+    pkg:
+      name: redis-server
     config: '/etc/redis/redis.conf'
     service:
       name: redis-server

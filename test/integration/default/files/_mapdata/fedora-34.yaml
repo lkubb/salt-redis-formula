@@ -8,6 +8,8 @@ values:
   lookup:
     arch: amd64
     rootgroup: root
+    pkg:
+      name: redis-server
     config: '/etc/redis/redis.conf'
     service:
       name: redis-server
