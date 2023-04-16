@@ -24,10 +24,6 @@ Redis service overrides are installed:
       - Redis is installed
     - context:
         redis: {{ redis | json }}
-  module.run:
-    - service.systemctl_reload: []
-    - onchanges:
-      - file: /etc/systemd/system/{{ redis.lookup.service.name }}.d/override.conf
 
 Service managing Transparent Huge Pages is installed:
   file.managed:
@@ -45,7 +41,3 @@ Service managing Transparent Huge Pages is installed:
       - Redis is installed
     - context:
         redis: {{ redis | json }}
-  module.run:
-    - service.systemctl_reload: []
-    - onchanges:
-      - file: /etc/systemd/system/redis-huge-pages.service
