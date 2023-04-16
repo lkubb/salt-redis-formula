@@ -1,6 +1,6 @@
 {
   "template": "https://github.com/lkubb/salt-template-formula",
-  "commit": "09d23d7be4069023a5dd2201c3db5b82049391a1",
+  "commit": "560c8b28d4f2681172c45b6861273d74bdd9b443",
   "checkout": null,
   "context": {
     "cookiecutter": {
@@ -25,14 +25,14 @@
       "subcomponent": "",
       "subcomponent_config": "",
       "git_username": "lkubb",
-      "_lookup": {
+      "lookup": {
         "socket": {
           "path": "/var/run/redis/redis.sock",
           "perms": "770"
         },
         "transparent_hugepage": "/sys/kernel/mm/transparent_hugepage"
       },
-      "_settings": {
+      "settings": {
         "config": {},
         "port": 6379,
         "socket": false,

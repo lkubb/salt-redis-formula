@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # vim: ft=yaml
 # yamllint disable rule:comments-indentation
 ---
@@ -44,6 +43,6 @@ redis:
       # The entries under `source_files` are prepended to the default source files
       # given for the state
     source_files:
-      redis-config-file-file-managed:
+      Redis configuration is managed:
         - 'example_alt.tmpl'
         - 'example_alt.tmpl.jinja'

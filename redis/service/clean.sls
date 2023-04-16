@@ -1,10 +1,13 @@
-# -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- set tplroot = tpldir.split('/')[0] %}
+{#-
+    Stops the redis service and disables it at boot time.
+#}
+
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as redis with context %}
 
-redis-service-clean-service-dead:
+Redis is dead:
   service.dead:
     - name: {{ redis.lookup.service.name }}
-    - enable: False
+    - enable: false
