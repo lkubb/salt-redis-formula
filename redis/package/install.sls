@@ -21,7 +21,7 @@ Redis service overrides are installed:
     - makedirs: true
     - template: jinja
     - require:
-      - redis-package-install-pkg-installed
+      - Redis is installed
     - context:
         redis: {{ redis | json }}
   module.run:
@@ -31,7 +31,7 @@ Redis service overrides are installed:
 
 Service managing Transparent Huge Pages is installed:
   file.managed:
-    - name: /etc/systemd/system/redis-huge-pages.service
+    - name: {{ redis.lookup.transparent_hugepage_unit }}
     - source: {{ files_switch(["redis-huge-pages.service", "redis-huge-pages.service.j2"],
                               lookup="Service managing Transparent Huge Pages is installed"
                  )
@@ -42,7 +42,7 @@ Service managing Transparent Huge Pages is installed:
     - makedirs: true
     - template: jinja
     - require:
-      - redis-package-install-pkg-installed
+      - Redis is installed
     - context:
         redis: {{ redis | json }}
   module.run:

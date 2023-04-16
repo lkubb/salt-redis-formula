@@ -9,13 +9,13 @@ include:
   - {{ sls_package_install }}
 
 Transparent Huge Pages support is managed:
-{%- if false == redis.system.transparent_huge_pages %}
+{%- if redis.system.transparent_huge_pages is false %}
   service.running:
 {%- else %}
   service.dead:
 {%- endif %}
-    - name: {{ redis.lookup.service.name }}
-    - enable: {{ false == redis.system.transparent_huge_pages }}
+    - name: {{ salt["file.basename"](redis.lookup.transparent_hugepage_unit) }}
+    - enable: {{ redis.system.transparent_huge_pages is false }}
 
 Overcommit memory setting is managed:
   sysctl.present:

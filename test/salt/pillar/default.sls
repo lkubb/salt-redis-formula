@@ -15,6 +15,7 @@ redis:
       path: /var/run/redis/redis.sock
       perms: '770'
     transparent_hugepage: /sys/kernel/mm/transparent_hugepage
+    transparent_hugepage_unit: /etc/systemd/system/redis-huge-pages.service
   config: {}
   port: 6379
   service:

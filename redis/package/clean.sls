@@ -16,7 +16,7 @@ Redis service modifications are removed:
   file.absent:
     - names:
       - /etc/systemd/system/{{ redis.lookup.service.name }}.d/override.conf
-      - /etc/systemd/system/redis-huge-pages.service
+      - {{ redis.lookup.transparent_hugepage_unit }}
 
 Redis is removed:
   pkg.removed:
