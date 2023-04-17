@@ -10,12 +10,22 @@ include:
 
 Transparent Huge Pages support is managed:
 {%- if redis.system.transparent_huge_pages is false %}
-  service.running:
+  service.enabled:
 {%- else %}
-  service.dead:
+  service.disabled:
 {%- endif %}
     - name: {{ salt["file.basename"](redis.lookup.transparent_hugepage_unit) }}
-    - enable: {{ redis.system.transparent_huge_pages is false }}
+
+{%- if redis.system.transparent_huge_pages is false %}
+
+Transparent Huge Pages support is disabled now:
+  module.run:
+    - service.run:
+      - name: {{ salt["file.basename"](redis.lookup.transparent_hugepage_unit) }}
+      - action: start
+    - onchanges:
+      - Transparent Huge Pages support is managed
+{%- endif %}
 
 Overcommit memory setting is managed:
   sysctl.present:
