@@ -2,7 +2,7 @@
 
 {%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as redis with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+{%- from tplroot ~ "/libtofsstack.jinja" import files_switch with context %}
 
 Redis is installed:
   pkg.installed:
@@ -11,8 +11,10 @@ Redis is installed:
 Redis service overrides are installed:
   file.managed:
     - name: /etc/systemd/system/{{ redis.lookup.service.name }}.d/override.conf
-    - source: {{ files_switch(["redis-override.conf", "redis-override.conf.j2"],
-                              lookup="Redis service overrides are installed"
+    - source: {{ files_switch(
+                    ["redis-override.conf", "redis-override.conf.j2"],
+                    config=redis,
+                    lookup="Redis service overrides are installed",
                  )
               }}
     - mode: '0644'
@@ -28,8 +30,10 @@ Redis service overrides are installed:
 Service managing Transparent Huge Pages is installed:
   file.managed:
     - name: {{ redis.lookup.transparent_hugepage_unit }}
-    - source: {{ files_switch(["redis-huge-pages.service", "redis-huge-pages.service.j2"],
-                              lookup="Service managing Transparent Huge Pages is installed"
+    - source: {{ files_switch(
+                    ["redis-huge-pages.service", "redis-huge-pages.service.j2"],
+                    config=redis,
+                    lookup="Service managing Transparent Huge Pages is installed"
                  )
               }}
     - mode: '0644'

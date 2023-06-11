@@ -3,7 +3,7 @@
 {%- set tplroot = tpldir.split("/")[0] %}
 {%- set sls_package_install = tplroot ~ ".package.install" %}
 {%- from tplroot ~ "/map.jinja" import mapdata as redis with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
+{%- from tplroot ~ "/libtofsstack.jinja" import files_switch with context %}
 
 include:
   - {{ sls_package_install }}
@@ -11,8 +11,10 @@ include:
 Redis configuration is managed:
   file.managed:
     - name: {{ redis.lookup.config }}
-    - source: {{ files_switch(["redis.conf", "redis.conf.j2"],
-                              lookup="Redis configuration is managed"
+    - source: {{ files_switch(
+                    ["redis.conf", "redis.conf.j2"],
+                    config=redis,
+                    lookup="Redis configuration is managed",
                  )
               }}
     - mode: '0644'

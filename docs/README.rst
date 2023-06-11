@@ -107,7 +107,7 @@ uninstalls the package.
 ``redis.package.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^
 Removes the redis package.
-Has a depency on `redis.config.clean`_.
+Has a dependency on `redis.config.clean`_.
 
 
 ``redis.config.clean``

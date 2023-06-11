@@ -2,7 +2,7 @@
 
 {#-
     Removes the redis package.
-    Has a depency on `redis.config.clean`_.
+    Has a dependency on `redis.config.clean`_.
 #}
 
 {%- set tplroot = tpldir.split("/")[0] %}
