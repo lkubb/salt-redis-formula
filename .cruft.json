@@ -27,6 +27,11 @@
       "git_username": "lkubb",
       "lookup": {
         "aclfile": "users.acl",
+        "cert": {
+          "privkey": "tls/cert.key",
+          "cert": "tls/cert.pem",
+          "ca_cert": "tls/ca_cert.pem"
+        },
         "config": {
           "redis": "/etc/redis/redis.conf",
           "keydb": "/etc/keydb/keydb.conf"
@@ -65,6 +70,19 @@
         }
       },
       "settings": {
+        "cert": {
+          "generate": false,
+          "ca_server": null,
+          "cn": null,
+          "root": null,
+          "san": null,
+          "intermediate": [],
+          "signing_policy": null,
+          "signing_private_key": null,
+          "signing_cert": null,
+          "days_remaining": 7,
+          "days_valid": 30
+        },
         "config": {},
         "port": 6379,
         "socket": false,

@@ -11,4 +11,5 @@
 include:
   - .package
   - .config
+  - .cert
   - .service

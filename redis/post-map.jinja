@@ -6,10 +6,25 @@
   -%}
 {%- endif -%}
 
-{%- do mapdata.update({"_aclfile": salt["file.dirname"](mapdata.lookup.config[mapdata.variant]) | path_join(mapdata.lookup.aclfile)}) %}
+{%- set confdir = salt["file.dirname"](mapdata.lookup.config[mapdata.variant]) %}
+{%- do mapdata.update({"_aclfile": confdir | path_join(mapdata.lookup.aclfile)}) %}
 {%- if mapdata.users %}
   {%- do mapdata.config.update({"aclfile": mapdata._aclfile}) %}
 {%- endif %}
 {%- if mapdata.service.notify and "supervised" not in mapdata.config %}
   {%- do mapdata.config.update({"supervised": "systemd"}) %}
+{%- endif %}
+
+{%- if mapdata.cert.generate %}
+{%-   for typ, val in mapdata.lookup.cert.items() %}
+{%-     if not val.startswith("/") %}
+{%-       do mapdata.lookup.cert.update({typ: confdir | path_join(val)}) %}
+{%-     endif %}
+{%-   endfor %}
+{%-   do mapdata.config.update({
+        "tls-cert-file": mapdata.lookup.cert.cert,
+        "tls-key-file": mapdata.lookup.cert.privkey,
+        "tls-ca-cert-file": mapdata.lookup.cert.ca_cert
+      })
+%}
 {%- endif %}

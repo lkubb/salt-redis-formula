@@ -43,6 +43,12 @@ Has a dependency on `redis.package`_.
 
 
 
+``redis.cert``
+^^^^^^^^^^^^^^
+Generates a TLS certificate + key for Redis.
+Depends on `redis.package`_.
+
+
 ``redis.service``
 ^^^^^^^^^^^^^^^^^
 Starts the redis service and enables it at boot time.
@@ -77,6 +83,12 @@ This works for apt/dnf/yum/zypper-based distributions only by default.
 Removes the configuration of the redis service and redis-relevant
 system configuration and has a
 dependency on `redis.service.clean`_.
+
+
+``redis.cert.clean``
+^^^^^^^^^^^^^^^^^^^^
+Removes generated Redis TLS certificate + key.
+Depends on `redis.service.clean`_.
 
 
 ``redis.service.clean``

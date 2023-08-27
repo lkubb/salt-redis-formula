@@ -9,6 +9,10 @@ redis:
     enablerepo:
       keydb: false
     aclfile: users.acl
+    cert:
+      ca_cert: tls/ca_cert.pem
+      cert: tls/cert.pem
+      privkey: tls/cert.key
     config:
       keydb: /etc/keydb/keydb.conf
       redis: /etc/redis/redis.conf
@@ -34,6 +38,18 @@ redis:
       redis:
         group: redis
         name: redis
+  cert:
+    ca_server: null
+    cn: null
+    days_remaining: 7
+    days_valid: 30
+    generate: false
+    intermediate: []
+    root: null
+    san: null
+    signing_cert: null
+    signing_policy: null
+    signing_private_key: null
   config: {}
   port: 6379
   service:
