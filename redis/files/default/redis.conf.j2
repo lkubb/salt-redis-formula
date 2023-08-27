@@ -1,18 +1,17 @@
 {%- macro render_opt(name, val) %}
 {%-   if val | is_list %}
 {%-     for v in val %}
-{{ render_opt(name, v) }}
+{{- render_opt(name, v) }}
 {%-     endfor %}
 {%-   elif val is boolean %}
-{{ name }} {{ "yes" if val is true else "no" }}
+{{- name }} {{ "yes" if val is true else "no" }}
 {%-   else %}
-{{ name }} {{ val }}
+{{- name }} {{ val }}
 {%-   endif %}
 {%- endmacro -%}
 
 # This file is managed by Salt.
 # Manual changes might be overwritten.
-
 {% for opt, val in redis.config.items() %}
 {{ render_opt(opt, val) }}
 {%- endfor %}
