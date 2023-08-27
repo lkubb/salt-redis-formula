@@ -5,3 +5,8 @@
     })
   -%}
 {%- endif -%}
+
+{%- do mapdata.update({"_aclfile": salt["file.dirname"](mapdata.lookup.config[mapdata.variant]) | path_join(mapdata.lookup.aclfile)}) %}
+{%- if mapdata.users %}
+  {%- do mapdata.config.update({"aclfile": mapdata._aclfile}) %}
+{%- endif %}

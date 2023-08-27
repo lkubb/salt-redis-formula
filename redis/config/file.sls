@@ -10,7 +10,7 @@ include:
 
 Redis configuration is managed:
   file.managed:
-    - name: {{ redis.lookup.config }}
+    - name: {{ redis.lookup.config[redis.variant] }}
     - source: {{ files_switch(
                     ["redis.conf", "redis.conf.j2"],
                     config=redis,
@@ -26,3 +26,25 @@ Redis configuration is managed:
       - sls: {{ sls_package_install }}
     - context:
         redis: {{ redis | json }}
+
+{%- if redis.users %}
+
+Redis ACL file is managed:
+  file.managed:
+    - name: {{ redis._aclfile }}
+    - source: {{ files_switch(
+                    ["users.acl", "users.acl.j2"],
+                    config=redis,
+                    lookup="Redis ACL file is managed",
+                 )
+              }}
+    - mode: '0640'
+    - user: root
+    - group: {{ redis.lookup.rootgroup }}
+    - makedirs: true
+    - template: jinja
+    - require:
+      - sls: {{ sls_package_install }}
+    - context:
+        redis: {{ redis | json }}
+{%- endif %}

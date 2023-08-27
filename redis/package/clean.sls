@@ -11,15 +11,18 @@
 
 include:
   - {{ sls_config_clean }}
+{%- if redis.variant != "redis" %}
+  - {{ slsdotpath }}.repo.clean
+{%- endif %}
 
 Redis service modifications are removed:
   file.absent:
     - names:
-      - /etc/systemd/system/{{ redis.lookup.service.name }}.d/override.conf
+      - /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.d/override.conf
       - {{ redis.lookup.transparent_hugepage_unit }}
 
 Redis is removed:
   pkg.removed:
-    - name: {{ redis.lookup.pkg.name }}
+    - name: {{ redis.lookup.pkg[redis.variant].name }}
     - require:
       - sls: {{ sls_config_clean }}

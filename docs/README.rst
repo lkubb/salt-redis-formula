@@ -14,7 +14,7 @@ Redis Formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-Manage Redis with Salt.
+Manage Redis (or KeyDB) with Salt.
 
 .. contents:: **Table of Contents**
    :depth: 1
@@ -41,7 +41,7 @@ If you need (non-default) configuration, please refer to:
 
 Special notes
 -------------
-
+* This formula also supports KeyDB. Enable by setting ``variant: keydb`` and (usually) by enabling the keydb repository in ``lookup:enablerepo``.
 
 Configuration
 -------------
@@ -69,6 +69,12 @@ and then starts the associated redis service.
 ``redis.package``
 ^^^^^^^^^^^^^^^^^
 Installs the redis package only.
+
+
+``redis.package.repo``
+^^^^^^^^^^^^^^^^^^^^^^
+This state will install the configured redis repository.
+This works for apt/dnf/yum/zypper-based distributions only by default.
 
 
 ``redis.config``
@@ -108,6 +114,12 @@ uninstalls the package.
 ^^^^^^^^^^^^^^^^^^^^^^^
 Removes the redis package.
 Has a dependency on `redis.config.clean`_.
+
+
+``redis.package.repo.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This state will remove the configured redis repository.
+This works for apt/dnf/yum/zypper-based distributions only by default.
 
 
 ``redis.config.clean``

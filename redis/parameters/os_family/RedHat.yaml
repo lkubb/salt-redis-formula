@@ -13,4 +13,5 @@
 values:
   lookup:
     pkg_manager: yum
+    repos: {}
 ...

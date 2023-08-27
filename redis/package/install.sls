@@ -4,13 +4,19 @@
 {%- from tplroot ~ "/map.jinja" import mapdata as redis with context %}
 {%- from tplroot ~ "/libtofsstack.jinja" import files_switch with context %}
 
+{%- if redis.variant != "redis" %}
+
+include:
+  - {{ slsdotpath }}.repo
+{%- endif %}
+
 Redis is installed:
   pkg.installed:
-    - name: {{ redis.lookup.pkg.name }}
+    - name: {{ redis.lookup.pkg[redis.variant].name }}
 
 Redis service overrides are installed:
   file.managed:
-    - name: /etc/systemd/system/{{ redis.lookup.service.name }}.d/override.conf
+    - name: /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.d/override.conf
     - source: {{ files_switch(
                     ["redis-override.conf", "redis-override.conf.j2"],
                     config=redis,

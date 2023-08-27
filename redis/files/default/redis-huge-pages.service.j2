@@ -2,7 +2,7 @@
 Description=Disable Transparent Huge Pages (THP)
 DefaultDependencies=no
 After=sysinit.target local-fs.target
-Before={{ redis.lookup.service.name }}.service
+Before={{ redis.lookup.service[redis.variant].name }}.service
 
 [Service]
 Type=oneshot

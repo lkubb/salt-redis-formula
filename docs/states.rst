@@ -21,6 +21,12 @@ and then starts the associated redis service.
 Installs the redis package only.
 
 
+``redis.package.repo``
+^^^^^^^^^^^^^^^^^^^^^^
+This state will install the configured redis repository.
+This works for apt/dnf/yum/zypper-based distributions only by default.
+
+
 ``redis.config``
 ^^^^^^^^^^^^^^^^
 Manages the Redis-relevant system and redis service configuration.
@@ -58,6 +64,12 @@ uninstalls the package.
 ^^^^^^^^^^^^^^^^^^^^^^^
 Removes the redis package.
 Has a dependency on `redis.config.clean`_.
+
+
+``redis.package.repo.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This state will remove the configured redis repository.
+This works for apt/dnf/yum/zypper-based distributions only by default.
 
 
 ``redis.config.clean``

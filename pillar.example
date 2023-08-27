@@ -11,8 +11,24 @@ redis:
   system:
     overcommit_memory: true
     transparent_huge_pages: false
+  users: {}
+  variant: redis
 
   lookup:
+    aclfile: users.acl
+    config:
+      keydb: /etc/keydb/keydb.conf
+      redis: /etc/redis/redis.conf
+    pkg:
+      keydb:
+        name: keydb-server
+      redis:
+        name: redis-server
+    service:
+      keydb:
+        name: keydb-server
+      redis:
+        name: redis-server
     socket:
       path: /var/run/redis/redis.sock
       perms: '770'

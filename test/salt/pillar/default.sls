@@ -6,11 +6,22 @@ redis:
     # Just for testing purposes
     winner: lookup
     added_in_lookup: lookup_value
+    enablerepo:
+      keydb: false
+    aclfile: users.acl
+    config:
+      keydb: /etc/keydb/keydb.conf
+      redis: /etc/redis/redis.conf
     pkg:
-      name: redis-server
-    config: '/etc/redis/redis.conf'
+      keydb:
+        name: keydb-server
+      redis:
+        name: redis-server
     service:
-      name: redis-server
+      keydb:
+        name: keydb-server
+      redis:
+        name: redis-server
     socket:
       path: /var/run/redis/redis.sock
       perms: '770'
@@ -24,6 +35,8 @@ redis:
   system:
     overcommit_memory: true
     transparent_huge_pages: false
+  users: {}
+  variant: redis
 
   tofs:
     # The files_switch key serves as a selector for alternative

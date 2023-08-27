@@ -9,7 +9,7 @@ include:
 
 Redis is running:
   service.running:
-    - name: {{ redis.lookup.service.name }}
+    - name: {{ redis.lookup.service[redis.variant].name }}
     - enable: true
     - watch:
       - sls: {{ sls_config_file }}

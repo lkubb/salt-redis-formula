@@ -9,5 +9,5 @@
 
 Redis is dead:
   service.dead:
-    - name: {{ redis.lookup.service.name }}
+    - name: {{ redis.lookup.service[redis.variant].name }}
     - enable: false

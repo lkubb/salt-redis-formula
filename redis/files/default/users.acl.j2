@@ -1,0 +1,22 @@
+{%- for user, config in redis.users | dictsort %}
+{%-   if config is string %}
+user {{ user }} {{ config }}
+{%-   else %}
+user {{ user }} {{ "off" if not config.get("enabled", True) else "on" }}
+{%-     if config.get("nopass") %} nopass{%- endif %}
+{%-     for password in config.get("passwords", []) %}
+{%-       if password is mapping %}
+{%-         if "hash" in password %} #{{ password["hash"] }}{%- endif %}
+{%-       else %} >{{ password }}{%- endif %}
+{%-     endfor %}
+{%-     for key in config.get("keys_allowed", []) %} ~{{ key }}{%- endfor %}
+{%-     for pubsub in config.get("pubsub_allowed", []) %} &{{ pubsub }}{%- endfor %}
+{%-     for category in config.get("categories_allowed", []) %} +@{{ category }}{%- endfor %}
+{%-     for category in config.get("categories_disallowed", []) %} -@{{ category }}{%- endfor %}
+{%-     for command in config.get("commands_allowed", []) %} +{{ command }}{%- endfor %}
+{%-     for command in config.get("commands_disallowed", []) %} -{{ command }}{%- endfor %}
+{%-     for command, subcommands in config.get("subcommands_allowed", {}) | dictsort %}
+{%-       for subcommand in subcommands %} +{{ command }}|{{ subcommand }}{%- endfor %}
+{%-     endfor %}
+{%-   endif %}
+{%- endfor %}

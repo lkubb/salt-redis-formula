@@ -15,13 +15,15 @@ include:
 
 Redis configuration is absent:
   file.absent:
-    - name: {{ redis.lookup.config }}
+    - names:
+      - {{ redis.lookup.config[redis.variant] }}
+      - {{ redis._aclfile }}
     - require:
       - sls: {{ sls_service_clean }}
 
 Transparent Huge Pages support is unmanaged:
   service.dead:
-    - name: {{ redis.lookup.service.name }}
+    - name: {{ salt["file.basename"](redis.lookup.transparent_hugepage_unit) }}
     - enable: false
 
 System does not overcommit memory:

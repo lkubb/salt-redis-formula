@@ -14,7 +14,7 @@ Redis Formula
    :scale: 100%
    :target: https://github.com/pre-commit/pre-commit
 
-Manage Redis with Salt.
+Manage Redis (or KeyDB) with Salt.
 
 .. contents:: **Table of Contents**
    :depth: 1
@@ -41,7 +41,7 @@ If you need (non-default) configuration, please refer to:
 
 Special notes
 -------------
-
+* This formula also supports KeyDB. Enable by setting ``variant: keydb`` and (usually) by enabling the keydb repository in ``lookup:enablerepo``.
 
 Configuration
 -------------

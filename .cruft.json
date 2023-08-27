@@ -19,13 +19,34 @@
       "abbr": "redis",
       "abbr_pysafe": "redis",
       "pkg": "redis-server",
-      "needs_repo": "",
+      "needs_repo": "y",
       "config": "/etc/redis/redis.conf",
       "service": "redis-server",
       "subcomponent": "",
       "subcomponent_config": "",
       "git_username": "lkubb",
       "lookup": {
+        "aclfile": "users.acl",
+        "config": {
+          "redis": "/etc/redis/redis.conf",
+          "keydb": "/etc/keydb/keydb.conf"
+        },
+        "pkg": {
+          "redis": {
+            "name": "redis-server"
+          },
+          "keydb": {
+            "name": "keydb-server"
+          }
+        },
+        "service": {
+          "redis": {
+            "name": "redis-server"
+          },
+          "keydb": {
+            "name": "keydb-server"
+          }
+        },
         "socket": {
           "path": "/var/run/redis/redis.sock",
           "perms": "770"
@@ -43,7 +64,9 @@
         },
         "service": {
           "protect_system_full": true
-        }
+        },
+        "users": {},
+        "variant": "redis"
       },
       "_template": "https://github.com/lkubb/salt-template-formula"
     }

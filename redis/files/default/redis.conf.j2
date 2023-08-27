@@ -1,5 +1,9 @@
 {%- macro render_opt(name, val) %}
-{%-   if val is string and " " in val %}
+{%-   if val | is_list %}
+{%-     for v in val %}
+{{ render_opt(name, v) }}
+{%-     endfor %}
+{%-   elif val is string and " " in val %}
 {{ name }} "{{ val }}"
 {%-   else %}
 {{ name }} {{ val }}
