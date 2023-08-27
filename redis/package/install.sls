@@ -16,7 +16,7 @@ Redis is installed:
 
 Redis service overrides are installed:
   file.managed:
-    - name: /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.d/override.conf
+    - name: /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.service.d/override.conf
     - source: {{ files_switch(
                     ["redis-override.conf", "redis-override.conf.j2"],
                     config=redis,

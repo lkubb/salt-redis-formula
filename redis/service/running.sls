@@ -13,4 +13,4 @@ Redis is running:
     - enable: true
     - watch:
       - sls: {{ sls_config_file }}
-      - file: /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.d/override.conf
+      - file: /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.service.d/override.conf

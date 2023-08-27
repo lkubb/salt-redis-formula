@@ -18,7 +18,7 @@ include:
 Redis service modifications are removed:
   file.absent:
     - names:
-      - /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.d/override.conf
+      - /etc/systemd/system/{{ redis.lookup.service[redis.variant].name }}.service.d/override.conf
       - {{ redis.lookup.transparent_hugepage_unit }}
 
 Redis is removed:
