@@ -59,10 +59,10 @@ Redis certificate is managed:
 {%-   endif %}
 
 Ensure CA certificates are trusted for Redis:
-  x509.pem_managed:
+  file.managed:
     - name: {{ redis.lookup.cert.ca_cert }}
     # ensure root and intermediate CA certs are in the truststore
-    - text: {{ ([redis.cert.root] + redis.cert.intermediate) | join("\n") | json }}
+    - contents: {{ ([redis.cert.root] + redis.cert.intermediate) | join("\n") | json }}
     - user: root
     - makedirs: true
     - group: {{ redis.lookup.rootgroup }}
