@@ -17,9 +17,9 @@ Redis configuration is managed:
                     lookup="Redis configuration is managed",
                  )
               }}
-    - mode: '0644'
-    - user: root
-    - group: {{ redis.lookup.rootgroup }}
+    - mode: '0640'
+    - user: {{ redis.lookup.user[redis.variant].name }}
+    - group: {{ redis.lookup.user[redis.variant].group }}
     - makedirs: true
     - template: jinja
     - require:
@@ -39,7 +39,7 @@ Redis ACL file is managed:
                  )
               }}
     - mode: '0640'
-    - user: root
+    - user: {{ redis.lookup.user[redis.variant].name }}
     - group: {{ redis.lookup.user[redis.variant].group }}
     - makedirs: true
     - template: jinja
