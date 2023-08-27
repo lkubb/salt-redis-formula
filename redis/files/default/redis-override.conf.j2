@@ -1,4 +1,7 @@
 [Service]
+{%- if redis.service.notify %}
+Type=notify
+{%- endif %}
 {%- if redis.service.protect_system_full %}
 ProtectSystem=full
 {%- endif %}

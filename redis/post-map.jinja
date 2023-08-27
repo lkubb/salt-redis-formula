@@ -10,3 +10,6 @@
 {%- if mapdata.users %}
   {%- do mapdata.config.update({"aclfile": mapdata._aclfile}) %}
 {%- endif %}
+{%- if mapdata.service.notify and "supervised" not in mapdata.config %}
+  {%- do mapdata.config.update({"supervised": "systemd"}) %}
+{%- endif %}

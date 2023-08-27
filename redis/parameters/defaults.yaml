@@ -36,6 +36,7 @@ values:
   config: {}
   port: 6379
   service:
+    notify: true
     protect_system_full: true
   socket: false
   system:

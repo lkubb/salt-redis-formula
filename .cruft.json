@@ -73,6 +73,7 @@
           "transparent_huge_pages": false
         },
         "service": {
+          "notify": true,
           "protect_system_full": true
         },
         "users": {},
