@@ -52,7 +52,17 @@
           "perms": "770"
         },
         "transparent_hugepage": "/sys/kernel/mm/transparent_hugepage",
-        "transparent_hugepage_unit": "/etc/systemd/system/redis-huge-pages.service"
+        "transparent_hugepage_unit": "/etc/systemd/system/redis-huge-pages.service",
+        "user": {
+          "keydb": {
+            "name": "keydb",
+            "group": "keydb"
+          },
+          "redis": {
+            "name": "redis",
+            "group": "redis"
+          }
+        }
       },
       "settings": {
         "config": {},

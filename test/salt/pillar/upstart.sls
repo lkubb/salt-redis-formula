@@ -27,6 +27,13 @@ redis:
       perms: '770'
     transparent_hugepage: /sys/kernel/mm/transparent_hugepage
     transparent_hugepage_unit: /etc/systemd/system/redis-huge-pages.service
+    user:
+      keydb:
+        group: keydb
+        name: keydb
+      redis:
+        group: redis
+        name: redis
   config: {}
   port: 6379
   service:

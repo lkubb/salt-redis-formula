@@ -40,7 +40,7 @@ Redis ACL file is managed:
               }}
     - mode: '0640'
     - user: root
-    - group: {{ redis.lookup.rootgroup }}
+    - group: {{ redis.lookup.user[redis.variant].group }}
     - makedirs: true
     - template: jinja
     - require:
