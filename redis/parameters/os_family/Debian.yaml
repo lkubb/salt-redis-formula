@@ -17,8 +17,9 @@ values:
       keydb:
         humanname: KeyDB stable
         name: >
-          deb https://download.keydb.dev/open-source-dist
-          {{ grains["oscodename"] }} main
+          deb [signed-by=/usr/share/keyrings/keydb.gpg]
+          https://download.keydb.dev/open-source-dist {{ grains["oscodename"] }} main
         key_url: https://download.keydb.dev/open-source-dist/keyring.gpg
+        aptkey: false
         file: /etc/apt/sources.list.d/keydb.list
 ...
